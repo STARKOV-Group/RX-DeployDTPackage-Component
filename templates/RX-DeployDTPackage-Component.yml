@@ -1,9 +1,9 @@
 spec:
   inputs:
-    stageDeployDTPackage:
+    stage:
       default: RX-DeployDTPackage
 ---
 RX-DeployDTPackage-Component:
-  stage: $[[ inputs.stageDeployDTPackage ]]
+  stage: $[[ inputs.stage ]]
   script:
     - '& $DTConfigPath\DeploymentToolCore.exe -x -d $PackageProjectPath\package.dat -n $DeployUserName -p $DeployUserPassword' 
