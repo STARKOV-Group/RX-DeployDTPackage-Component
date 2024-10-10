@@ -2,8 +2,12 @@ spec:
   inputs:
     stage:
       default: RX-DeployDTPackage
+    rules:
+      default: '"true" == "true"'
 ---
 RX-DeployDTPackage-Component:
   stage: $[[ inputs.stage ]]
+  rules: 
+    - if: $[[ inputs.rules ]]
   script:
     - '& $DTConfigPath\DeploymentToolCore.exe -x -d $PackageProjectPath\package.dat -n $DeployUserName -p $DeployUserPassword' 
