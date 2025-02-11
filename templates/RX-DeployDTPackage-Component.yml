@@ -8,6 +8,9 @@ spec:
 RX-DeployDTPackage-Component:
   stage: $[[ inputs.stage ]]
   rules: 
-    - if: $[[ inputs.rules ]]
+    - if: $[[ inputs.rules ]] && $DeployMode != "upload"
+      when: on_success
+    - if: $[[ inputs.rules ]] && $DeployMode == "upload"
+      when: never
   script:
     - '& $DTConfigPath\DeploymentToolCore.exe -x -d $PackageProjectPath\package.dat -n $DeployUserName -p $DeployUserPassword' 
