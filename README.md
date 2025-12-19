@@ -8,9 +8,9 @@
 
 Если значение параметра DeployMode не равно "upload", то этап выполняется
 
-Из параметров DeployUserName и DeployUserPassword (с префиксом [DeployDestination](https://git.starkovgrp.ru/ci-cd-components/Completed-RXDTDeploy-Component#deploydestination), если он указан) извлекаются логин и пароль пользователя, под которым будет происходить публикация на машине, по протоколу [WebProtocol](https://git.starkovgrp.ru/ci-cd-components/Completed-RXDTDeploy-Component#webprotocol), с адресом [DeployIpServer](https://git.starkovgrp.ru/ci-cd-components/RX-PreparedServer-Component#deployipserver) и портом [ServerHttpPort](https://git.starkovgrp.ru/ci-cd-components/Completed-RXDTDeploy-Component#serverhttpport) или [ServerHttpsPort](https://git.starkovgrp.ru/ci-cd-components/Completed-RXDTDeploy-Component#serverhttpsport) (в зависимости от протокола).
+Из параметров DeployUserName и DeployUserPassword (с префиксом [DeployDestination](https://github.com/STARKOV-Group/Completed-RXDTDeploy-Component#deploydestination), если он указан) извлекаются логин и пароль пользователя, под которым будет происходить публикация на машине, по протоколу [WebProtocol](https://github.com/STARKOV-Group/Completed-RXDTDeploy-Component#webprotocol), с адресом [DeployIpServer](https://github.com/STARKOV-Group/Completed-RXDTDeploy-Component#deployipserver) и портом [ServerHttpPort](https://github.com/STARKOV-Group/Completed-RXDTDeploy-Component#serverhttpport) или [ServerHttpsPort](https://github.com/STARKOV-Group/Completed-RXDTDeploy-Component#serverhttpsport) (в зависимости от протокола).
 
-Если значение параметра [NeedApplySettings](https://git.starkovgrp.ru/ci-cd-components/Completed-RXDTDeploy-Component#needapplysettings) равно "True", то после публикации на сервер машины применяются настройки
+Если значение параметра [NeedApplySettings](https://github.com/STARKOV-Group/Completed-RXDTDeploy-Component#needapplysettings) равно "True", то после публикации на сервер машины применяются настройки
 
 В артефакты этапа кладутся логи. Сами артефакты хранятся в течении 1 недели
 
@@ -21,7 +21,7 @@
 ##### DeployMode
 
 **Описание:** Режим публикации  
-**Примечание**: Также используется в [компоненте выгрузки в корпоративное облако](https://git.starkovgrp.ru/ci-cd-components/RX-UploadPackage-Component)  
+**Примечание**: Также используется в [компоненте выгрузки в корпоративное облако](https://github.com/STARKOV-Group/RX-UploadPackage-Component)  
 **Обязательность:** Нет  
 **Возможные значения:** upload, любое значение  
 **Значение по умолчанию**: ""
@@ -39,4 +39,5 @@
 
 **Описание:** Пароль пользователя под которым будет происходить публикация  
 **Обязательность:** Да  
+
 **Пример:** 1Qwerty
