@@ -6,13 +6,23 @@ spec:
       default: '"true" == "true"'
 ---
 RX-DeployDTPackage-Component:
+  tags:
+    - $RunnerTags
   stage: $[[ inputs.stage ]]
   rules: 
-    - if: $[[ inputs.rules ]] && $DeployMode != "upload"
+    - if: $[[ inputs.rules ]] && ($DeployMode != "upload" || $DeployMode == "combined")
       when: on_success
     - if: $[[ inputs.rules ]] && $DeployMode == "upload"
       when: never
   script:
+    # Переопределение путей с учетом веток. При изменении логики также поменять в BuildPackage, PreparedServer, DeployDTPackage, UploadPackage и VersionUp компонентах
+    - $FormattedBranchName = ($CI_COMMIT_BRANCH -replace '\W', '_')
     - $DeployUserName = Get-Variable -ValueOnly "$($DeployDestination)DeployUserName"
     - $DeployUserPassword = Get-Variable -ValueOnly "$($DeployDestination)DeployUserPassword"
-    - '& $DTConfigPath\DeploymentToolCore.exe -x -d $PackageProjectPath\package.dat -n "$DeployUserName" -p "$DeployUserPassword"'
+    - '& $DTConfigPath\DeploymentToolCore.exe -x -d "$PackageProjectPath\$($FormattedBranchName)_package.dat" -n "$DeployUserName" -p "$DeployUserPassword"'
+    - if ($NeedApplySettings -eq "True") {& $DTConfigPath\DeploymentToolCore.exe -s -n "$DeployUserName" -p "$DeployUserPassword"} else {echo Without apply-settings}
+  artifacts:
+    expire_in: 1 week
+    when: always
+    paths:
+      - ./*DeploymentToolCore*.log
